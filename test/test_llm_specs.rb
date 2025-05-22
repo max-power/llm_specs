@@ -61,7 +61,7 @@ class TestLLMSpecs < TLDR
   end
   
   def test_default_cache_path
-    assert_equal "models.json", LLMSpecs.cache_path
+    assert_equal "llm-specs.json", LLMSpecs.cache_path
   end
   
   def test_custom_cache_path

@@ -15,7 +15,7 @@ module LLMSpecs
     attr_writer :cache_path
 
     def cache_path
-      @cache_path || "models.json"
+      @cache_path || "llm-specs.json"
     end
 
     def models
