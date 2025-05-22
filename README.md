@@ -11,48 +11,6 @@ It provides a simple, efficient way to access model metadata with built-in cachi
 - Provides a queryable catalog of models via .models
 - Supports filtering and lookup by model attributes
 
-##  Model Capabilities
-Each model is represented by an instance of `LLMSpecs::Model`, a value object that encapsulates:
-
-- `id`, `name`, `provider`, `family`
-- Token limits (`context_window`, `max_output_tokens`)
-- Supported modalities (e.g. `text`, `image`)
-- Capabilities such as:
-    - `function_calling?`
-    - `structured_output?`
-    - `streaming?`
-    - `reasoning?`
-    - `citations?`
-    - `batch?`
-
-- Pricing breakdowns via `input_pricing` and `output_pricing`
-
-You can easily check capabilities:
-```ruby
-model.supports?(:function_calling) # => true/false
-model.function_calling?  # => shortcut for above
-
-
-or input or output modalities:
-```ruby
-models.supports_input?(:audio) # => true/false
-models.audio_input? # shortcut
-models.image_input?
-models.text_input?
-
-models.supports_output?(:audio) # => true/false
-models.audio_output? # shortcut
-models.image_output?
-models.text_output?
-models.embeddings_output?
-```
-
-Pricing
-```ruby
-model.input_pricing      # => $ per 1M input tokens (default)
-model.input_pricing(:text_tokens, :batch)
-model.output_pricing(:embeddings)
-```
 
 ## Example Usage
 ```ruby
@@ -81,6 +39,50 @@ streaming_models = LLMSpecs.models.select(&:streaming?)
 streaming_models = LLMSpecs.models.select(&:audio_output?)
 
 ```
+
+##  Model Capabilities
+Each model is represented by an instance of `LLMSpecs::Model`, a value object that encapsulates:
+
+- `id`, `name`, `provider`, `family`
+- Token limits (`context_window`, `max_output_tokens`)
+- Supported modalities (e.g. `text`, `image`)
+- Capabilities such as:
+    - `function_calling?`
+    - `structured_output?`
+    - `streaming?`
+    - `reasoning?`
+    - `citations?`
+    - `batch?`
+
+- Pricing breakdowns via `input_pricing` and `output_pricing`
+
+You can easily check capabilities:
+```ruby
+model.supports?(:function_calling) # => true/false
+model.function_calling?  # => shortcut for above
+```
+
+or input or output modalities:
+```ruby
+models.supports_input?(:audio) # => true/false
+models.audio_input? # shortcut
+models.image_input?
+models.text_input?
+
+models.supports_output?(:audio) # => true/false
+models.audio_output? # shortcut
+models.image_output?
+models.text_output?
+models.embeddings_output?
+```
+
+Pricing methods:
+```ruby
+model.input_pricing      # => $ per 1M input tokens (default)
+model.input_pricing(:text_tokens, :batch)
+model.output_pricing(:embeddings)
+```
+
 
 ## License
 
