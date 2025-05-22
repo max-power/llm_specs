@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module LLMSpecs
   class Cache
     def initialize(file, ttl: 86400)

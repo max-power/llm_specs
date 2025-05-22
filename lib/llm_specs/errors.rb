@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module LLMSpecs
   class ModelNotFound < StandardError
     def initialize(id)

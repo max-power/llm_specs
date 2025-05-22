@@ -1,10 +1,6 @@
 # frozen_string_literal: true
-
 module LLMSpecs
-  class Catalog
-    extend Forwardable
-#    def_delegators :all, :each, :find, :where, :reject, :select, :filter
-    
+  class Catalog    
     def initialize(api_uri:, cache_path:)
       @uri   = URI(api_uri)
       @cache = Cache.new(cache_path)
