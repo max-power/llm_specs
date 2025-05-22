@@ -59,4 +59,16 @@ class TestLLMSpecs < TLDR
     assert model.function_calling?
     assert model.batch?
   end
+  
+  def test_default_cache_path
+    assert_equal "models.json", LLMSpecs.cache_path
+  end
+  
+  def test_custom_cache_path
+    path = "/files/tempory/cache.json"
+    LLMSpecs.cache_path = path
+    assert_equal path, LLMSpecs.cache_path
+  ensure
+    LLMSpecs.cache_path = nil
+  end
 end

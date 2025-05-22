@@ -9,10 +9,17 @@ require_relative "llm_specs/collection"
 require_relative "llm_specs/model"
 
 module LLMSpecs
-  API_URI    = "https://api.parsera.org/v1/llm-specs"
-  CACHE_PATH = "models.json"
+  API_URI = "https://api.parsera.org/v1/llm-specs"
   
-  def self.models
-    @models ||= Catalog.new(api_uri: API_URI, cache_path: CACHE_PATH).models
+  class << self
+    attr_writer :cache_path
+
+    def cache_path
+      @cache_path || "models.json"
+    end
+
+    def models
+      @models ||= Catalog.new(api_uri: API_URI, cache_path: cache_path).models
+    end
   end
 end
