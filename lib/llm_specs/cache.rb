@@ -9,7 +9,7 @@ module LLMSpecs
     def fetch
       return read if valid?
       data = yield
-      write(data)
+      write(data) if data
       data
     end
     
