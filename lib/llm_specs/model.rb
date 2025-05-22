@@ -5,8 +5,24 @@ module LLMSpecs
       capabilities.include?(capability.to_s)
     end
     
+    def supports_input?(mode)
+      input_modalities.include?(mode.to_s)
+    end
+    
+    def supports_output?(mode)
+      output_modalities.include?(mode.to_s)
+    end
+    
     %i[function_calling structured_output batch reasoning citations streaming].each do |capability|
       define_method(:"#{capability}?") { supports?(capability) }
+    end
+    
+    %i[text image audio].each do |method|
+      define_method(:"#{method}_input?") { supports_input?(method) }
+    end
+    
+     %i[text image audio embeddings].each do |method|
+      define_method(:"#{method}_output?") { supports_output?(method) }
     end
     
     def input_modalities

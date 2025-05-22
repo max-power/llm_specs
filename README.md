@@ -27,11 +27,31 @@ Each model is represented by an instance of `LLMSpecs::Model`, a value object th
 
 - Pricing breakdowns via `input_pricing` and `output_pricing`
 
-You can easily check capabilities or pricing:
+You can easily check capabilities:
 ```ruby
-model.function_calling?  # => true/false
+model.supports?(:function_calling) # => true/false
+model.function_calling?  # => shortcut for above
+
+
+or input or output modalities:
+```ruby
+models.supports_input?(:audio) # => true/false
+models.audio_input? # shortcut
+models.image_input?
+models.text_input?
+
+models.supports_output?(:audio) # => true/false
+models.audio_output? # shortcut
+models.image_output?
+models.text_output?
+models.embeddings_output?
+```
+
+Pricing
+```ruby
 model.input_pricing      # => $ per 1M input tokens (default)
-model.output_pricing(:image_tokens)
+model.input_pricing(:text_tokens, :batch)
+model.output_pricing(:embeddings)
 ```
 
 ## Example Usage
@@ -48,14 +68,18 @@ model = LLMSpecs.models.find("claude-3-sonnet")
 
 ### Filter models
 ```ruby
+# List all Anthropic models
 anthropic_models = LLMSpecs.models.where(provider: "anthropic")
 
+# List all Anthropic models by family "claude-3-7-sonnet"
 claude_models = LLMSpecs.models.where(provider: "anthropic", family: "claude-3-7-sonnet")
-```
 
-### List all models that support streaming
-```ruby
+# List all models that support streaming
 streaming_models = LLMSpecs.models.select(&:streaming?)
+
+# List all models that support audio output
+streaming_models = LLMSpecs.models.select(&:audio_output?)
+
 ```
 
 ## License

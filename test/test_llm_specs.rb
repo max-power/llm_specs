@@ -38,4 +38,25 @@ class TestLLMSpecs < TLDR
     assert_equal 'Claude 3.7 Sonnet', model.name
     assert_equal 'claude-3-7-sonnet', model.family
   end
+  
+  def test_model_output_inquiry
+    model = LLMSpecs.models.find('claude-3-7-sonnet-20250219')
+    assert model.text_output?
+    refute model.image_output?
+    refute model.audio_output?
+    refute model.audio_output?
+  end
+  
+  def test_model_input_inquiry
+    model = LLMSpecs.models.find('claude-3-7-sonnet-20250219')
+    assert model.text_input?
+    assert model.image_input?
+    refute model.audio_input?
+  end
+  
+  def test_capability_inquiry
+    model = LLMSpecs.models.find('claude-3-7-sonnet-20250219')
+    assert model.function_calling?
+    assert model.batch?
+  end
 end
