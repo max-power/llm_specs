@@ -89,6 +89,11 @@ model.input_pricing(:text_tokens, :batch)
 model.output_pricing(:embeddings)
 ```
 
+## Cache configuration
+
+```ruby
+LLMSpecs.cache_path = Rails.root.join("tmp", "cache", "llm-specs-cache.json")
+```
 
 ## License
 
