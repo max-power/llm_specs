@@ -36,7 +36,7 @@ claude_models = LLMSpecs.models.where(provider: "anthropic", family: "claude-3-7
 streaming_models = LLMSpecs.models.select(&:streaming?)
 
 # List all models that support audio output
-streaming_models = LLMSpecs.models.select(&:audio_output?)
+audio_models = LLMSpecs.models.select(&:audio_output?)
 
 ```
 
@@ -60,16 +60,20 @@ You can easily check capabilities:
 ```ruby
 model.supports?(:function_calling) # => true/false
 model.function_calling?  # => shortcut for above
+# with multiple arguments
+model.supports?(:function_calling, :batch) # => true/false
 ```
 
 or input or output modalities:
 ```ruby
 models.supports_input?(:audio) # => true/false
+models.supports_input?(:audio, :text) # multiple argument
 models.audio_input? # shortcut
 models.image_input?
 models.text_input?
 
 models.supports_output?(:audio) # => true/false
+models.supports_output?(:audio, :embeddings) # multiple argument
 models.audio_output? # shortcut
 models.image_output?
 models.text_output?
@@ -78,7 +82,7 @@ models.embeddings_output?
 
 Pricing methods:
 ```ruby
-model.input_pricing      # => $ per 1M input tokens (default)
+model.input_pricing  # => $ per 1M input tokens (default :text_tokens)
 model.input_pricing(:text_tokens, :batch)
 model.output_pricing(:embeddings)
 ```
