@@ -14,10 +14,14 @@ module LLMSpecs
     
     def fetch
       @cache.fetch do
-        response = Net::HTTP.get_response(@uri)
-        raise FetchError.new(response) unless response.is_a? Net::HTTPSuccess
-        JSON.parse(response.body, symbolize_names: true)
+        parse Net::HTTP.get_response(@uri).tap(&:value) # raises Net::HTTPError if not 2xx 
       end
+    end
+    
+    def parse(response)
+      JSON.parse(response.body, symbolize_names: true)
     end
   end
 end
+
+
