@@ -13,13 +13,11 @@ module LLMSpecs
     private
     
     def fetch
-      @cache.fetch do
-        parse Net::HTTP.get_response(@uri).tap(&:value) # raises Net::HTTPError if not 2xx 
-      end
-    end
-    
-    def parse(response)
-      JSON.parse(response.body, symbolize_names: true)
+      @cache.fetch {
+        Net::HTTP.get_response(@uri).tap(&:value).body # .value raises Net::HTTPError if not 2xx
+      }.then {
+        JSON.parse it, symbolize_names: true
+      }
     end
   end
 end
