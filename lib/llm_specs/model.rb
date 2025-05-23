@@ -2,27 +2,27 @@
 module LLMSpecs
   class Model < Data.define(:id, :name, :provider, :family, :context_window, :max_output_tokens, :modalities, :capabilities, :pricing)
     def supports?(*caps)
-      caps.all? { capabilities.include?(it.to_s) }
+      caps.all? { capabilities.include? it.to_s }
     end
     
     def supports_input?(*modes)
-      modes.all? { input_modalities.include?(it.to_s) }
+      modes.all? { input_modalities.include? it.to_s }
     end
     
     def supports_output?(*modes)
-      modes.all? { output_modalities.include?(it.to_s) }
+      modes.all? { output_modalities.include? it.to_s }
     end
     
     %i[function_calling structured_output batch reasoning citations streaming].each do |capability|
-      define_method(:"#{capability}?") { supports?(capability) }
+      define_method(:"#{capability}?") { supports? capability }
     end
     
-    %i[text image audio].each do |method|
-      define_method(:"#{method}_input?") { supports_input?(method) }
+    %i[text image audio].each do |mode|
+      define_method(:"#{mode}_input?") { supports_input? mode }
     end
     
-     %i[text image audio embeddings].each do |method|
-      define_method(:"#{method}_output?") { supports_output?(method) }
+     %i[text image audio embeddings].each do |mode|
+      define_method(:"#{mode}_output?") { supports_output? mode }
     end
     
     def input_modalities
