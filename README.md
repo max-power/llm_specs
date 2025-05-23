@@ -7,7 +7,7 @@ It provides a simple, efficient way to access model metadata with built-in cachi
 ## Features
 
 - Fetches LLM specs from: https://api.parsera.org/v1/llm-specs
-- Caches results locally to models.json
+- Caches results locally to llm-specs.json
 - Provides a queryable catalog of models via .models
 - Supports filtering and lookup by model attributes
 
