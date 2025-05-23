@@ -9,6 +9,15 @@ class TestLLMSpecs < TLDR
     assert LLMSpecs.models
     assert_kind_of LLMSpecs::Collection, LLMSpecs.models
   end
+
+  def test_provider_models
+    assert_kind_of LLMSpecs::Collection, LLMSpecs.openai
+    assert_kind_of LLMSpecs::Collection, LLMSpecs.anthropic
+    assert_kind_of LLMSpecs::Collection, LLMSpecs.gemini
+    assert_kind_of LLMSpecs::Collection, LLMSpecs.deepseek
+  end
+  
+
   
   def test_where
     result = LLMSpecs.models.where(provider: 'openai')
