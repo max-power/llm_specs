@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
     end
   end
 
-  spec.required_ruby_version = ">= 3.2.0"
+  spec.required_ruby_version = ">= 3.4.0"
   spec.require_paths = ["lib"]
   spec.add_development_dependency "tldr", "~> 1.0"
 end
