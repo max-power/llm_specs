@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email       = ["kevin.melchert@gmail.com"]
 
   spec.summary     = "Ruby interface for fetching LLM specifications from the Parsera API"
-  spec.description = "LLMSpecs is a lightweight Ruby interface for fetching and caching large language model (LLM) specifications from the Parsera API. It provides a simple, efficient way to access model metadata with built-in caching and query support."
+  spec.description = "LLMSpecs is a lightweight Ruby interface for fetching large language model (LLM) specifications from the Parsera API. It provides a simple, efficient way to access model metadata with built-in caching and query support."
   spec.homepage    = "https://github.com/max-power/llm_specs"
   spec.license     = "MIT"
   spec.metadata    = { "source_code_uri" => spec.homepage }
