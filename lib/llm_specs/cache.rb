@@ -20,7 +20,7 @@ module LLMSpecs
     end
 
     def write(data)
-      File.write(@file, JSON.pretty_generate(data))
+      File.write(@file, JSON.pretty_generate(data)) if data
     end
   end
 end
