@@ -16,7 +16,12 @@ It provides a simple, efficient way to access model metadata with built-in cachi
 ```ruby
 require 'llm_specs'
 
-models = LLMSpecs.models
+models = LLMSpecs.models # all models
+
+models = LLMSpecs.gemini # provider specific models
+models = LLMSpecs.anthropic
+models = LLMSpecs.openai
+models = LLMSpecs.deepseek
 ```
 
 ### Find a model by ID
@@ -28,9 +33,13 @@ model = LLMSpecs.models.find("claude-3-sonnet")
 ```ruby
 # List all Anthropic models
 anthropic_models = LLMSpecs.models.where(provider: "anthropic")
+# or 
+anthropic_models = LLMSpecs.anthropic
 
 # List all Anthropic models by family "claude-3-7-sonnet"
 claude_models = LLMSpecs.models.where(provider: "anthropic", family: "claude-3-7-sonnet")
+#or 
+claude_models = LLMSpecs.anthropic.where(family: "claude-3-7-sonnet")
 
 # List all models that support streaming
 streaming_models = LLMSpecs.models.select(&:streaming?)
