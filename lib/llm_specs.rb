@@ -22,7 +22,7 @@ module LLMSpecs
     end
     
     %i[anthropic deepseek gemini openai].each do |prov|
-      define_method(prov) { models.where(provider: prov) }
+      define_method(prov) { models.where(provider: prov.to_s) }
     end
   end
 end
