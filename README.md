@@ -114,6 +114,7 @@ model.input_pricing # => returns a hash:
 #    }
 #  }
 
+model.pricing.dig(:text_tokens, :standard, :input_per_million)
 model.input_pricing  # 15.0 => $ per 1M input tokens (default to pricing[:text_tokens][:standard][:input_per_million])
 model.output_pricing
 
