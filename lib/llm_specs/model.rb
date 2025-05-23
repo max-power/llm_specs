@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 module LLMSpecs
   class Model < Data.define(:id, :name, :provider, :family, :context_window, :max_output_tokens, :modalities, :capabilities, :pricing)
-    def supports?(*caps)
-      caps.all? { capabilities.include? it.to_s }
+    def supports?(*args)
+      args.all? { capabilities.include? it.to_s }
     end
     
-    def supports_input?(*modes)
-      modes.all? { input_modalities.include? it.to_s }
+    def supports_input?(*args)
+      args.all? { input_modalities.include? it.to_s }
     end
     
-    def supports_output?(*modes)
-      modes.all? { output_modalities.include? it.to_s }
+    def supports_output?(*args)
+      args.all? { output_modalities.include? it.to_s }
     end
     
     %i[function_calling structured_output batch reasoning citations streaming].each do |capability|
