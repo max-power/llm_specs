@@ -9,3 +9,4 @@
 Gemfile.lock
 llm-specs.json
 *.gem
+.DS_Store
