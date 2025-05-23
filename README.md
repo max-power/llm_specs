@@ -116,10 +116,10 @@ model.input_pricing # => returns a hash:
 
 model.pricing.dig(:text_tokens, :standard, :input_per_million)
 model.input_pricing  # 15.0 => $ per 1M input tokens (default to pricing[:text_tokens][:standard][:input_per_million])
-model.output_pricing
+model.output_pricing # 75.0 => $ per 1M input tokens
 
 model.input_pricing(:text_tokens, :batch)
-model.output_pricing(:embeddings)
+model.input_pricing(:embeddings)
 ```
 
 ## Cache configuration
