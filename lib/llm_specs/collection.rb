@@ -2,7 +2,7 @@
 module LLMSpecs
   class Collection < Array
     def find(id)
-      super() { it.id == id } || raise(ModelNotFound.new(id))
+      super() { it.id == id } or raise ModelNotFound.new(id)
     end
 
     def where(**criteria)
