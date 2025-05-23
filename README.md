@@ -1,6 +1,6 @@
 # LLMSpecs
 
-LLMSpecs is a lightweight Ruby interface for fetching and caching 
+LLMSpecs is a lightweight Ruby interface for fetching 
 large language model (LLM) specifications from the [Parsera API](https://llmspecs.parsera.org).
 It provides a simple, efficient way to access model metadata with built-in caching and query support.
 
@@ -63,7 +63,7 @@ Each model is represented by an instance of `LLMSpecs::Model`, a value object th
     - `citations?`
     - `batch?`
 
-- Pricing breakdowns via `input_pricing` and `output_pricing`
+- Pricing breakdowns via `pricing`, `input_pricing` and `output_pricing`
 
 You can easily check capabilities:
 ```ruby
@@ -91,7 +91,30 @@ model.embeddings_output?
 
 Pricing methods:
 ```ruby
-model.input_pricing  # 1.1 => $ per 1M input tokens (default :text_tokens)
+model.input_pricing # => returns a hash: 
+#  {
+#    text_tokens: {
+#      standard: {
+#        input_per_million: 15.0,
+#        cached_input_per_million: 18.75,
+#        output_per_million: 75.0
+#      },
+#      batch: {
+#        input_per_million: nil,
+#        output_per_million: nil
+#      }
+#    },
+#    embeddings: {
+#      standard: {
+#        input_per_million: nil
+#      },
+#      batch: {
+#        input_per_million: nil
+#      }
+#    }
+#  }
+
+model.input_pricing  # 1.1 => $ per 1M input tokens (default to pricing[:text_tokens][:standard][:input_per_million])
 model.output_pricing
 
 model.input_pricing(:text_tokens, :batch)
