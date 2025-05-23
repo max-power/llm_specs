@@ -17,7 +17,7 @@ class TestLLMSpecs < TLDR
   end
   
   def test_find
-    model = LLMSpecs.models.find('claude-3-7-sonnet-20250219')
+    model = LLMSpecs.models.find('o4-mini')
     assert_instance_of LLMSpecs::Model, model
   end
   
@@ -33,14 +33,14 @@ class TestLLMSpecs < TLDR
   end
   
   def test_model_methods
-    model = LLMSpecs.models.find('claude-3-7-sonnet-20250219')
-    assert_equal 'claude-3-7-sonnet-20250219', model.id
-    assert_equal 'Claude 3.7 Sonnet', model.name
-    assert_equal 'claude-3-7-sonnet', model.family
+    model = LLMSpecs.models.find('gemini-2.5-flash-preview-native-audio-dialog')
+    assert_equal 'gemini-2.5-flash-preview-native-audio-dialog', model.id
+    assert_equal 'Gemini 2.5 Flash Native Audio', model.name
+    assert_equal 'gemini-2.5-flash-preview-native-audio-dialog', model.family
   end
   
   def test_model_output_inquiry
-    model = LLMSpecs.models.find('claude-3-7-sonnet-20250219')
+    model = LLMSpecs.models.find('o4-mini')
     assert model.text_output?
     refute model.image_output?
     refute model.audio_output?
@@ -48,14 +48,14 @@ class TestLLMSpecs < TLDR
   end
   
   def test_model_input_inquiry
-    model = LLMSpecs.models.find('claude-3-7-sonnet-20250219')
+    model = LLMSpecs.models.find('o4-mini')
     assert model.text_input?
     assert model.image_input?
     refute model.audio_input?
   end
   
   def test_capability_inquiry
-    model = LLMSpecs.models.find('claude-3-7-sonnet-20250219')
+    model = LLMSpecs.models.find('o4-mini')
     assert model.function_calling?
     assert model.batch?
   end
