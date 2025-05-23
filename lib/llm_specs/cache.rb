@@ -8,7 +8,7 @@ module LLMSpecs
     
     def fetch
       return read if valid?
-      yield.tap { write(it) }
+      yield.tap { write it }
     end
     
     def valid?

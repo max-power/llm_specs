@@ -13,7 +13,7 @@ module LLMSpecs
     
     %i[select reject filter].each do |method|
       define_method(method) do |&block|
-        self.class.new(super(&block))
+        self.class.new super(&block)
       end
     end
   end
