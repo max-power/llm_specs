@@ -10,7 +10,7 @@ module LLMSpecs
       return read if valid?
       yield.tap { write it }
     end
-    
+
     def read
       File.read(@file)
     end
@@ -22,11 +22,11 @@ module LLMSpecs
     def valid?
       exist? && fresh?
     end
-    
+
     def exist?
       File.exist?(@file)
     end
-    
+
     def fresh?
       Time.now - File.mtime(@file) < @ttl
     end
