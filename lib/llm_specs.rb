@@ -21,6 +21,10 @@ module LLMSpecs
       @models ||= Catalog.new(api_uri: API_URI, cache_path: cache_path).models
     end
     
+    def providers
+      models.map(&:provider).uniq
+    end
+    
     %i[anthropic deepseek gemini openai].each do |prov|
       define_method(prov) { models.where(provider: prov.to_s) }
     end

@@ -80,4 +80,8 @@ class TestLLMSpecs < TLDR
   ensure
     LLMSpecs.cache_path = nil
   end
+  
+  def test_providers_list
+    assert_equal ["anthropic", "gemini", "deepseek", "openai"], LLMSpecs.providers
+  end
 end
