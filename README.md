@@ -23,7 +23,7 @@ models = LLMSpecs.anthropic
 models = LLMSpecs.openai
 models = LLMSpecs.deepseek
 
-providers = LLMSpecs.providers # a list of all providers covers by Parsera API
+providers = LLMSpecs.providers # a list of all providers covered by Parsera API
 ```
 
 ### Find a model by ID
