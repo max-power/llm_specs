@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require "json"
 require "net/http"
+require_relative "llm_specs/version"
 require_relative "llm_specs/errors"
 require_relative "llm_specs/cache"
 require_relative "llm_specs/catalog"
