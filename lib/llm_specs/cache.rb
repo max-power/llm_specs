@@ -12,11 +12,11 @@ module LLMSpecs
     end
 
     def read
-      File.read(@file)
+      File.read(@file) if exist?
     end
 
     def write(data)
-      File.write(@file, data)
+      File.write(@file, data, mode: "wb")
     end
 
     def valid?
