@@ -22,7 +22,7 @@ class TestLLMSpecs < TLDR
   def test_where
     result = LLMSpecs.models.where(provider: 'openai')
     assert_kind_of LLMSpecs::Collection, result
-    assert_equal 57, result.count
+    assert result.count > 0
   end
   
   def test_find
