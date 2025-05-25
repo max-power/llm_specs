@@ -7,6 +7,7 @@ require_relative "llm_specs/cache"
 require_relative "llm_specs/catalog"
 require_relative "llm_specs/collection"
 require_relative "llm_specs/model"
+require_relative "llm_specs/active_model" if defined?(ActiveModel)
 
 module LLMSpecs
   API_URI = "https://api.parsera.org/v1/llm-specs"
