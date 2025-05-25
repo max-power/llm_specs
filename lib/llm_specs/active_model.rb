@@ -4,11 +4,11 @@ module LLMSpecs
 
   class Model
     module ActiveModelCompliance
-      def persisted? = false
+      def persisted? = true
       def errors     = Hash.new { |h,k| h[k] = [] }
       def to_model   = self
-      def to_key     = nil
-      def to_param   = nil
+      def to_key     = [id]
+      def to_param   = id
       def to_partial_path = "models/model"
     end
     
